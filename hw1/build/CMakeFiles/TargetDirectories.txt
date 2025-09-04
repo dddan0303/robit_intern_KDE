@@ -1,3 +1,0 @@
-/home/dan/Desktop/hw1/build/CMakeFiles/test.dir
-/home/dan/Desktop/hw1/build/CMakeFiles/edit_cache.dir
-/home/dan/Desktop/hw1/build/CMakeFiles/rebuild_cache.dir
