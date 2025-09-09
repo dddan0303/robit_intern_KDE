@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>500</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>500</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>hw1 UDP 채팅</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="mainLayout">
+    <item>
+     <widget class="QLabel" name="statusLabel">
+      <property name="text">
+       <string>연결 안됨</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: red; font-weight: bold; padding: 5px;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTextEdit" name="chatDisplay">
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: #b2c7da; border: none;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="inputLayout">
+      <item>
+       <widget class="QLineEdit" name="messageInput">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="placeholderText">
+         <string>메시지를 입력하세요</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit { padding: 8px; border: 1px solid #ddd; border-radius: 20px; font-size: 13px; }</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="sendButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>전송</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton { background-color: #007bff; color: white; border: none; border-radius: 15px; padding: 8px 16px; font-weight: bold; } QPushButton:hover { background-color: #0056b3; } QPushButton:disabled { background-color: #ccc; }</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="connectButton">
+        <property name="text">
+         <string>연결 설정</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton { background-color: #28a745; color: white; border: none; border-radius: 15px; padding: 8px 16px; font-weight: bold; } QPushButton:hover { background-color: #218838; }</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    
+
+    <item>
+     <widget class="QLabel" name="welcomeTemplate">
+      <property name="visible">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>&lt;div align='center' style='margin: 20px; padding: 15px; background-color: rgba(255,255,255,0.8); border-radius: 10px;'&gt;&lt;div style='font-size: 14px; font-weight: bold; color: #333; margin-bottom: 5px;'&gt;UDP 채팅 &lt;/div&gt;&lt;div style='font-size: 12px; color: #666;'&gt;연결 설정을 하세요&lt;/div&gt;&lt;/div&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="successTemplate">
+      <property name="visible">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>&lt;div align='center' style='margin: 10px;'&gt;&lt;div style='background-color: rgba(76, 175, 80, 0.2); border: 1px solid #4CAF50; border-radius: 8px; padding: 8px; display: inline-block;'&gt;&lt;span style='color: #4CAF50; font-size: 12px; font-weight: bold;'&gt;포트 %1에서 연결 대기 중&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="myMessageTemplate">
+      <property name="visible">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>&lt;div align='right' style='margin: 5px 10px;'&gt;&lt;div style='display: inline-block; max-width: 70%; background-color: #fee500; padding: 8px 12px; border-radius: 18px 4px 18px 18px; word-wrap: break-word; box-shadow: 0 1px 2px rgba(0,0,0,0.1);'&gt;&lt;span style='color: #000; font-size: 13px;'&gt;%1&lt;/span&gt;&lt;/div&gt;&lt;div style='text-align: right; margin-top: 2px;'&gt;&lt;span style='font-size: 10px; color: #888;'&gt;%2&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="receivedMessageTemplate">
+      <property name="visible">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>&lt;div align='left' style='margin: 5px 10px;'&gt;&lt;div style='display: inline-block; max-width: 70%; background-color: #ffffff; padding: 8px 12px; border-radius: 4px 18px 18px 18px; border: 1px solid #e0e0e0; word-wrap: break-word; box-shadow: 0 1px 2px rgba(0,0,0,0.1);'&gt;&lt;span style='color: #000; font-size: 13px;'&gt;%1&lt;/span&gt;&lt;/div&gt;&lt;div style='text-align: left; margin-top: 2px;'&gt;&lt;span style='font-size: 10px; color: #888;'&gt;%2&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="connectedStatusTemplate">
+      <property name="visible">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>연결됨 - 포트: %1, 대상: %2:%3</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: green; font-weight: bold; padding: 5px;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="dialogStyles">
+      <property name="visible">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>연결</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 14px; font-weight: bold;</string>
+      </property>
+      <property name="toolTip">
+       <string>QLineEdit, QSpinBox { padding: 10px; border: 2px solid #ddd; border-radius: 6px; font-size: 13px; min-height: 20px; } QLineEdit:focus, QSpinBox:focus { border-color: #007bff; }</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="dialogButtonOk">
+      <property name="visible">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>127.0.0.1</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton { background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px; font-size: 13px; font-weight: bold; min-width: 80px; min-height: 35px; } QPushButton:hover { background-color: #0056b3; }</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="dialogButtonCancel">
+      <property name="visible">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>12345</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton { background-color: #6c757d; color: white; padding: 10px 20px; border: none; border-radius: 6px; font-size: 13px; font-weight: bold; min-width: 80px; min-height: 35px; } QPushButton:hover { background-color: #5a6268; }</string>
+      </property>
+      <property name="toolTip">
+       <string>12346</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
+
